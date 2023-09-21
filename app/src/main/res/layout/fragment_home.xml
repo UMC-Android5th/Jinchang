@@ -231,6 +231,24 @@
             tools:listitem="@layout/potcast_list_item"
             app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
             app:layout_constraintTop_toBottomOf="@+id/home_pannel_potcast_text"/>
+        <TextView
+            android:id="@+id/home_pannel_video_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="비디오 콜랙션"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/home_pannel_album_second_img_iv"
+            app:layout_constraintTop_toBottomOf="@id/home_pannel_potcast_list_rv" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_pannel_video_list_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/video_list_item"
+            app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_video_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

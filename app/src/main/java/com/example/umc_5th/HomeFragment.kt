@@ -27,8 +27,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setTodayMusic();
-        setPotCast();
+        setTodayMusic()
+        setPotCast()
+        setVideo()
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -49,5 +50,14 @@ class HomeFragment : Fragment() {
             adapter = potCastListAdapter
         }
         potCastListAdapter.notifyDataSetChanged()
+    }
+    private fun setVideo(){
+        var videoList: Array<Pair<String,String>> = arrayOf(Pair("제목","가수"),Pair("제목","가수"),Pair("제목","가수"))
+        var videoListAdapter = VideoListAdapter(videoList)
+        binding.homePannelVideoListRv.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = videoListAdapter
+        }
+        videoListAdapter.notifyDataSetChanged()
     }
 }
