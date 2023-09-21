@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -94,15 +95,15 @@
             android:id="@+id/home_pannel_album_first_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+
             android:text="In My Bad"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toTopOf="@id/home_pannel_album_first_singer_tv"
             app:layout_constraintStart_toEndOf="@id/home_pannel_album_first_img_iv"
-            app:layout_constraintTop_toTopOf="@id/home_pannel_album_first_img_iv"/>
+            app:layout_constraintTop_toTopOf="@id/home_pannel_album_first_img_iv" />
 
         <TextView
             android:id="@+id/home_pannel_album_first_singer_tv"
@@ -131,10 +132,9 @@
             android:layout_height="wrap_content"
             android:text="In My Bad"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toTopOf="@id/home_pannel_album_second_singer_tv"
             app:layout_constraintStart_toEndOf="@id/home_pannel_album_second_img_iv"
             app:layout_constraintTop_toTopOf="@id/home_pannel_album_second_img_iv"/>
@@ -150,6 +150,105 @@
             app:layout_constraintTop_toBottomOf="@id/home_pannel_album_second_title_tv"
             app:layout_constraintStart_toEndOf="@id/home_pannel_album_second_img_iv"
             app:layout_constraintBottom_toBottomOf="@id/home_pannel_album_second_img_iv"/>
+        <TextView
+            android:id="@+id/home_pannel_today_music_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="오늘 발매 음악"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/home_pannel_album_second_img_iv"
+            app:layout_constraintTop_toBottomOf="@id/home_pannel_background_iv" />
+        <ImageView
+            android:id="@+id/home_pannel_more_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/btn_main_arrow_more"
+            app:layout_constraintStart_toEndOf="@id/home_pannel_today_music_text"
+            app:layout_constraintTop_toTopOf="@id/home_pannel_today_music_text"
+            app:layout_constraintBottom_toBottomOf="@id/home_pannel_today_music_text"/>
+        <TextView
+            android:id="@+id/home_pannel_today_music_overall_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종합"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/home_pannel_btn_nugu_iv"
+            app:layout_constraintTop_toTopOf="@id/home_pannel_today_music_text"
+            app:layout_constraintBottom_toBottomOf="@id/home_pannel_today_music_text"/>
+        <TextView
+            android:id="@+id/home_pannel_today_music_domestic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="국내"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/home_pannel_btn_ticket_iv"
+            app:layout_constraintTop_toTopOf="@id/home_pannel_today_music_text"
+            app:layout_constraintBottom_toBottomOf="@id/home_pannel_today_music_text"/>
+        <TextView
+            android:id="@+id/home_pannel_today_music_overseas_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="해외"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/home_pannel_btn_setting_iv"
+            app:layout_constraintTop_toTopOf="@id/home_pannel_today_music_text"
+            app:layout_constraintBottom_toBottomOf="@id/home_pannel_today_music_text"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_pannel_music_list_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/music_list_item"
+            app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_today_music_text"/>
+        <ImageView
+            android:id="@+id/home_pannel_viewpager_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/img_home_viewpager_exp"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_music_list_rv"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/home_pannel_potcast_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="매일 들어도 좋은 팟캐스트"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/home_pannel_album_second_img_iv"
+            app:layout_constraintTop_toBottomOf="@id/home_pannel_viewpager_exp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_pannel_potcast_list_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/potcast_list_item"
+            app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_potcast_text"/>
+        <TextView
+            android:id="@+id/home_pannel_video_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="비디오 컬랙션"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/home_pannel_album_second_img_iv"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_potcast_list_rv"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_pannel_video_list_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/video_list_item"
+            app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_video_text"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
