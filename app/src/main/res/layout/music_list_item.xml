@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/music_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/img_album_exp2" />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/widget_black_play"/>
+    </FrameLayout>
+    <TextView
+        android:id="@+id/music_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LILAC"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/music_singer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이유 (IU)"
+        android:textColor="#808080"
+        android:textSize="15sp"/>
+
+</LinearLayout>
