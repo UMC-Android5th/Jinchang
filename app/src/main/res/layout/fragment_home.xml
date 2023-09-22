@@ -248,7 +248,73 @@
             tools:listitem="@layout/video_list_item"
             app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
             app:layout_constraintTop_toBottomOf="@+id/home_pannel_video_text"/>
-
+        <ImageView
+            android:id="@+id/home_pannel_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="450dp"
+            android:src="@drawable/discovery_banner_aos"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_video_list_rv"/>
+        <ImageView
+            android:id="@+id/home_pannel_viewpager_exp2"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_height="150dp"
+            android:src="@drawable/img_home_viewpager_exp2"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_banner"/>
+        <LinearLayout
+            android:id="@+id/home_pannel_ic_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_pannel_viewpager_exp2">
+            <ImageView
+                android:id="@+id/home_pannel_facebook_ic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_main_facebook"/>
+            <ImageView
+                android:id="@+id/home_pannel_instagram_ic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/ic_main_instagram"/>
+            <ImageView
+                android:id="@+id/home_pannel_youtube_ic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/ic_main_youtube"/>
+            <ImageView
+                android:id="@+id/home_pannel_twitter_ic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/ic_main_twitter"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/home_pannel_last_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="(주)드림어스컴퍼니 사업자 정보"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_pannel_ic_list"/>
+        <ImageView
+            android:id="@+id/home_pannel_last_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/btn_main_arrow_more"
+            app:layout_constraintStart_toEndOf="@id/home_pannel_last_text"
+            app:layout_constraintTop_toTopOf="@id/home_pannel_last_text"
+            app:layout_constraintBottom_toBottomOf="@id/home_pannel_last_text"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
