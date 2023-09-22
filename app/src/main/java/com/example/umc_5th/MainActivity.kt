@@ -1,7 +1,9 @@
 package com.example.umc_5th
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.umc_5th.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,9 +14,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initBottomNavigation()
+        binding.mainPlayerCl.setOnClickListener(ButtonListener())
+    }
+    inner class ButtonListener: View.OnClickListener{
+        override fun onClick(v: View?) {
+            when(v?.id){
+                R.id.main_player_cl -> goSongActivity();
+            }
+        }
 
     }
-
+    private fun goSongActivity(){
+        val intent = Intent(this, SongActivity::class.java)
+        intent.putExtra("songName",binding.songName.text.toString())
+        intent.putExtra("singerName",binding.singerName.text.toString())
+        startActivity(intent)
+        finish()
+    }
     private fun initBottomNavigation(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, HomeFragment())
