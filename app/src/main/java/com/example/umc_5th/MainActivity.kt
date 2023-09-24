@@ -14,20 +14,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initBottomNavigation()
-        binding.mainPlayerCl.setOnClickListener(ButtonListener())
+        binding.mainPlayerCl.setOnClickListener { goSongActivity() }
+        binding.mainMiniplayerBtn.setOnClickListener{setPlayerStatus(false)}
+        binding.mainPauseBtn.setOnClickListener{setPlayerStatus(true)}
     }
-    inner class ButtonListener: View.OnClickListener{
-        override fun onClick(v: View?) {
-            when(v?.id){
-                R.id.main_player_cl -> goSongActivity();
-            }
+    private fun setPlayerStatus(isPlaying: Boolean){
+        if(isPlaying){
+            binding.mainMiniplayerBtn.visibility = View.VISIBLE
+            binding.mainPauseBtn.visibility = View.GONE
+        }else{
+            binding.mainMiniplayerBtn.visibility = View.GONE
+            binding.mainPauseBtn.visibility = View.VISIBLE
         }
-
     }
     private fun goSongActivity(){
         val intent = Intent(this, SongActivity::class.java)
-        intent.putExtra("songName",binding.songName.text.toString())
         intent.putExtra("singerName",binding.singerName.text.toString())
+        intent.putExtra("songName",binding.songName.text.toString())
         startActivity(intent)
         finish()
     }

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.example.umc_5th.databinding.ActivityMainBinding
 import com.example.umc_5th.databinding.ActivitySongBinding
 
@@ -16,13 +18,17 @@ class SongActivity : AppCompatActivity() {
         binding.songMusicTitleTv.text = intent.getStringExtra("songName")
         binding.songSingerNameTv.text = intent.getStringExtra("singerName")
         setContentView(binding.root)
-        binding.songDownIb.setOnClickListener(ButtonListener())
+        binding.songDownIb.setOnClickListener { goMainActivity() }
+        binding.songMiniplayerIv.setOnClickListener { setPlayerStatus(false) }
+        binding.songPauseIv.setOnClickListener { setPlayerStatus(true) }
     }
-    inner class ButtonListener: View.OnClickListener{
-        override fun onClick(v: View?) {
-            when(v?.id){
-                R.id.song_down_ib -> goMainActivity()
-            }
+    private fun setPlayerStatus(isPlaying: Boolean){
+        if(isPlaying){
+            binding.songMiniplayerIv.visibility = View.VISIBLE
+            binding.songPauseIv.visibility = View.GONE
+        }else{
+            binding.songMiniplayerIv.visibility = View.GONE
+            binding.songPauseIv.visibility = View.VISIBLE
         }
     }
     private fun goMainActivity(){

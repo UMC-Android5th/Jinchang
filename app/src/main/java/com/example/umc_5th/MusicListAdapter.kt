@@ -1,6 +1,7 @@
 package com.example.umc_5th
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.umc_5th.databinding.MusicListItemBinding
 
 
 class MusicListAdapter(val list: Array<Pair<String,String>>): RecyclerView.Adapter<MusicListAdapter.MusicListViewHolder>() {
+    private lateinit var binding: MusicListItemBinding
     override fun getItemCount(): Int {
         return list.count()
     }
@@ -26,5 +29,10 @@ class MusicListAdapter(val list: Array<Pair<String,String>>): RecyclerView.Adapt
     inner class MusicListViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var musicItemTile: TextView = view.findViewById(R.id.music_name)
         var musicItemSinger: TextView = view.findViewById(R.id.music_singer_name)
+        init{
+            view.setOnClickListener{
+                (view.context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.main_frm,AlbumFragment()).commitAllowingStateLoss()
+            }
+        }
     }
 }
