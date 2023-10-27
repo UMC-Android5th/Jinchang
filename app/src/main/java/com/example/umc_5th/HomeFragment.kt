@@ -6,22 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.umc_5th.databinding.FragmentHomeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -29,11 +17,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        setBannerVP()
         setTodayMusic()
         setPotCast()
         setVideo()
         // Inflate the layout for this fragment
         return binding.root
+    }
+    private fun setBannerVP(){
+        val bannerAdapter = BannerVPAdapter(this)
+        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
+        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2))
+        binding.homePannelViewpagerExp.adapter = bannerAdapter
+        binding.homePannelViewpagerExp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
     }
     private fun setTodayMusic(){
         var musicList: Array<Pair<String,String>> = arrayOf(Pair("LILAC","아이유(IU)"),Pair("제목","가수"),Pair("제목","가수"))
