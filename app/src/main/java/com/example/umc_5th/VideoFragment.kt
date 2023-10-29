@@ -8,16 +8,19 @@ import androidx.fragment.app.Fragment
 import com.example.umc_5th.databinding.FragmentVideoBinding
 
 class VideoFragment : Fragment() {
-
-    lateinit var binding: FragmentVideoBinding
+    private var _binding: FragmentVideoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentVideoBinding.inflate(inflater,container,false)
-
+        _binding = FragmentVideoBinding.inflate(inflater,container,false)
         return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

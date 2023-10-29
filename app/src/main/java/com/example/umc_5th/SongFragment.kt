@@ -9,15 +9,20 @@ import com.example.umc_5th.databinding.FragmentSongBinding
 
 class SongFragment : Fragment() {
 
-    lateinit var binding: FragmentSongBinding
+    private var _binding: FragmentSongBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSongBinding.inflate(inflater,container,false)
+        _binding = FragmentSongBinding.inflate(inflater,container,false)
 
         return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
