@@ -8,20 +8,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.umc_5th.databinding.FragmentHomeBinding
+import com.example.umc_5th.databinding.MusicListItemBinding
 
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        mainActivity = context as MainActivity
         setBannerVP()
         setTodayMusic()
         setPotCast()
         setVideo()
-        // Inflate the layout for this fragment
         return binding.root
     }
     private fun setBannerVP(){
@@ -32,13 +35,25 @@ class HomeFragment : Fragment() {
         binding.homePannelViewpagerExp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
     }
     private fun setTodayMusic(){
-        var musicList: Array<Pair<String,String>> = arrayOf(Pair("LILAC","아이유(IU)"),Pair("제목","가수"),Pair("제목","가수"))
+        var musicList: ArrayList<Pair<String,String>> = arrayListOf(Pair("LILAC","아이유(IU)"),Pair("제목","가수"),Pair("제목","가수"))
         var musicListAdapter = MusicListAdapter(musicList)
         binding.homePannelMusicListRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = musicListAdapter
         }
         musicListAdapter.notifyDataSetChanged()
+        binding.homePannelMusicListRv.adapter = musicListAdapter
+
+        musicListAdapter.setMyItemClickListener(object : MusicListAdapter.MyItemClickListener{
+
+            override fun onItemClick(album: Pair<String,String>) {
+                changeAlbumFragment(album)
+            }
+
+            override fun onRemoveAlbum(position: Int) {
+
+            }
+        })
     }
     private fun setPotCast(){
         var potCastList: Array<Pair<String,String>> = arrayOf(Pair("제목","가수"),Pair("제목","가수"),Pair("제목","가수"))
@@ -57,5 +72,10 @@ class HomeFragment : Fragment() {
             adapter = videoListAdapter
         }
         videoListAdapter.notifyDataSetChanged()
+    }
+    private fun changeAlbumFragment(album: Pair<String, String>) {
+        mainActivity.supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, AlbumFragment())
+            .commitAllowingStateLoss()
     }
 }

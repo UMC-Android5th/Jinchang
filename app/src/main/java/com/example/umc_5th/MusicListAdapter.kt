@@ -8,23 +8,35 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.umc_5th.databinding.MusicListItemBinding
 
 
-class MusicListAdapter(val list: Array<Pair<String,String>>): RecyclerView.Adapter<MusicListAdapter.MusicListViewHolder>() {
+class MusicListAdapter(val list: ArrayList<Pair<String,String>>): RecyclerView.Adapter<MusicListAdapter.MusicListViewHolder>() {
+    interface MyItemClickListener{
+        fun onItemClick(album: Pair<String,String>)
+        fun onRemoveAlbum(position: Int)
+    }
+    private lateinit var mItemClickListener: MyItemClickListener
+
+    fun setMyItemClickListener(itemClickListener: MyItemClickListener){
+        mItemClickListener = itemClickListener
+    }
     override fun getItemCount(): Int {
         return list.count()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicListViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.music_list_item, parent, false)
-        return MusicListViewHolder(view)
+        var binding: MusicListItemBinding = MusicListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MusicListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MusicListViewHolder, position: Int) {
-        holder.musicItemTile.text = list[position].first
-        holder.musicItemSinger.text = list[position].second
+        holder.binding(list[position])
+        holder.itemView.setOnClickListener { mItemClickListener.onItemClick(list[position]) }
     }
-    inner class MusicListViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var musicItemTile: TextView = view.findViewById(R.id.music_name)
-        var musicItemSinger: TextView = view.findViewById(R.id.music_singer_name)
+    inner class MusicListViewHolder(val binding: MusicListItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun binding(list: Pair<String, String>){
+            binding.musicName.text = list.first
+            binding.musicSingerName.text = list.second
+        }
     }
 }
