@@ -8,28 +8,23 @@ import com.example.umc_5th.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_FLO)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initBottomNavigation()
-        binding.mainPlayerCl.setOnClickListener(ButtonListener())
-    }
-    inner class ButtonListener: View.OnClickListener{
-        override fun onClick(v: View?) {
-            when(v?.id){
-                R.id.main_player_cl -> goSongActivity();
-            }
-        }
 
-    }
-    private fun goSongActivity(){
-        val intent = Intent(this, SongActivity::class.java)
-        intent.putExtra("songName",binding.songName.text.toString())
-        intent.putExtra("singerName",binding.singerName.text.toString())
-        startActivity(intent)
-        finish()
+        initBottomNavigation()
+        val song = Song(binding.songName.text.toString(), binding.singerName.text.toString(),0,60,false)
+        binding.mainPlayerCl.setOnClickListener {
+            val intent = Intent(this, SongActivity::class.java)
+            intent.putExtra("songName", song.songName)
+            intent.putExtra("singer",song.singer)
+            intent.putExtra("second",song.second)
+            intent.putExtra("playTime",song.playTime)
+            intent.putExtra("isPlaying",song.isPlaying)
+            startActivity(intent)
+        }
     }
     private fun initBottomNavigation(){
         supportFragmentManager.beginTransaction()
