@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_FLO)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //"야호 6주차"
 
         initBottomNavigation()
         binding.mainPlayerCl.setOnClickListener {
