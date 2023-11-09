@@ -200,6 +200,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/music_list_item"
             app:layout_constraintLeft_toLeftOf="@+id/home_pannel_today_music_text"
             app:layout_constraintTop_toBottomOf="@+id/home_pannel_today_music_text"/>
