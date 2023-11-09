@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.umc_5th.databinding.MusicListItemBinding
 
 
-class MusicListAdapter(val list: ArrayList<Pair<String,String>>): RecyclerView.Adapter<MusicListAdapter.MusicListViewHolder>() {
+class MusicListAdapter(private val albumList: ArrayList<Album>/*val list: ArrayList<Pair<String,String>>*/): RecyclerView.Adapter<MusicListAdapter.MusicListViewHolder>() {
     interface MyItemClickListener{
-        fun onItemClick(album: Pair<String,String>)
+        fun onItemClick(album: Album)
         fun onRemoveAlbum(position: Int)
     }
     private lateinit var mItemClickListener: MyItemClickListener
@@ -21,8 +21,17 @@ class MusicListAdapter(val list: ArrayList<Pair<String,String>>): RecyclerView.A
     fun setMyItemClickListener(itemClickListener: MyItemClickListener){
         mItemClickListener = itemClickListener
     }
+    fun addItem(album: Album){
+        albumList.add(album)
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(position: Int){
+        albumList.removeAt(position)
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
-        return list.count()
+        return albumList.count()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicListViewHolder {
         var binding: MusicListItemBinding = MusicListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,13 +39,14 @@ class MusicListAdapter(val list: ArrayList<Pair<String,String>>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MusicListViewHolder, position: Int) {
-        holder.binding(list[position])
-        holder.itemView.setOnClickListener { mItemClickListener.onItemClick(list[position]) }
+        holder.binding(albumList[position])
+        holder.itemView.setOnClickListener { mItemClickListener.onItemClick(albumList[position]) }
     }
     inner class MusicListViewHolder(val binding: MusicListItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun binding(list: Pair<String, String>){
-            binding.musicName.text = list.first
-            binding.musicSingerName.text = list.second
+        fun binding(list: Album){
+            binding.itemAlbumTitleTv.text = list.title
+            binding.musicSingerNameTv.text = list.singer
+            binding.musicImage.setImageResource(list.coverImg!!)
         }
     }
 }
