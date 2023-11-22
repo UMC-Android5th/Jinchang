@@ -22,6 +22,7 @@ class SongActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySongBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initPlayList()
         initSong()
         initClickListener()
